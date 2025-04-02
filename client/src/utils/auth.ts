@@ -3,6 +3,13 @@ import { JwtPayload, jwtDecode } from 'jwt-decode';
 class AuthService {
   getProfile() {
     // TODO: return the decoded token
+    const token = this.getToken();
+    if (!token) return null;
+    try {
+      return jwtDecode<JwtPayload>(token);
+    } catch (error) {
+      return null;
+    }
   }
 
   loggedIn() {
