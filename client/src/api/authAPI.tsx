@@ -16,9 +16,11 @@ const login = async (userInfo: UserLogin) => {
     //if the response from the server is not succesful then the error details are extracted and a new reponse error is generated
     if(!response.ok) {
       const errorData = await response.json();
+      console.log('Login error:', errorData);
       throw new Error(`Error: ${errorData.message}`);
     }
     const data = await response.json();
+    console.log('Login successful', data);
     return data;
   } catch (err) {
     console.log ('Error from user login: ', err);
